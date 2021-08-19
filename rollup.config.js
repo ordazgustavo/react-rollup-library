@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
+import external from 'rollup-plugin-peer-deps-external';
 
 import pkg from './package.json';
 
@@ -7,6 +8,9 @@ const options = [
   { input: pkg.source, output: pkg.module, format: 'esm' },
 ];
 
+/**
+ * @return {import('rollup').RollupOptions}
+ */
 function createRollupConfig({ input, output, format }) {
   return {
     input,
@@ -16,7 +20,7 @@ function createRollupConfig({ input, output, format }) {
       sourcemap: true,
       exports: 'named',
     },
-    plugins: [typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [external(), typescript({ tsconfig: './tsconfig.json' })],
   };
 }
 

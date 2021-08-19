@@ -1,8 +1,2 @@
-type Return = { data?: null; loading: boolean };
-
-export function useFetch(): Return {
-  return {
-    data: null,
-    loading: false,
-  };
-}
+export * from './button';
+export * from './use-fetch';
